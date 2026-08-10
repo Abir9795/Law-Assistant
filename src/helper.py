@@ -1,7 +1,7 @@
 import os
-from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain_community.document_loaders import CSVLoader
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import CSVLoader, DirectoryLoader, PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 
@@ -9,7 +9,7 @@ from langchain_pinecone import PineconeVectorStore
 # Load CSV documents from a folder
 def load_csv_documents(folder_path):
     csv_docs = []
-    for file in os.listdir(folder_path):
+    for file in sorted(os.listdir(folder_path)):
         file_path = os.path.join(folder_path, file)
         if file.endswith(".csv"):
             loader = CSVLoader(file_path=file_path)
@@ -50,7 +50,9 @@ def split_into_chunks(docs, chunk_size=1000, chunk_overlap=200):
 # Load HuggingFace embeddings
 def download_hugging_face_embeddings():
     return HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
+        model_name=os.getenv(
+            "EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"
+        )
     )
 
 

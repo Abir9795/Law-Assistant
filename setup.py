@@ -1,10 +1,5 @@
-from setuptools import find_packages, setup
+"""Compatibility shim for tools that still expect setup.py."""
 
-setup(
-    name = 'Generative AI',
-    version= '0.0.0',
-    author = 'Rafiqul Islam',
-    author_email= 'ri95879@gmail.com',
-    packages= find_packages(),
-    install_requires = []
-)
+from setuptools import setup
+
+setup()

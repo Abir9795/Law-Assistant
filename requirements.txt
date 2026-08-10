@@ -1,10 +1,10 @@
-sentence-transformers==2.2.2
-langchain
-flask
-python-dotenv
-pinecone[grpc]
-langchain-pinecone
-langchain-community
-langchain-openai
-langchain-experimental
--e .
+Flask==3.1.1
+python-dotenv==1.1.1
+pypdf==6.14.2
+langchain==0.3.27
+langchain-core==0.3.80
+langchain-community==0.3.27
+langchain-pinecone==0.2.13
+langchain-huggingface==0.3.1
+pinecone[grpc]>=6,<8
+sentence-transformers==3.4.1
